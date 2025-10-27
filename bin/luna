@@ -1,0 +1,10 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+# Released under the MIT License.
+# Copyright, 2025.
+
+require_relative "../lib/luna"
+require_relative "../lib/luna/command"
+
+exit Luna::Command.call(*ARGV)
