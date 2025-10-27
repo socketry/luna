@@ -1,0 +1,275 @@
+PATH
+  remote: .
+  specs:
+    luna (0.1.0)
+      async
+      async-http (~> 0.75)
+      bundler
+      console (>= 1.30)
+      markly (>= 0.6, < 2.0)
+      protocol-http (~> 0.31)
+      samovar (~> 2.3)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    agent-context (0.3.0)
+      bake (>= 0.23)
+    ast (2.4.3)
+    async (2.34.0)
+      console (~> 1.29)
+      fiber-annotation
+      io-event (~> 1.11)
+      metrics (~> 0.12)
+      traces (~> 0.18)
+    async-container (0.27.7)
+      async (~> 2.22)
+    async-container-supervisor (0.7.0)
+      async-service
+      io-endpoint
+      memory (~> 0.7)
+      memory-leak (~> 0.5)
+    async-http (0.92.1)
+      async (>= 2.10.2)
+      async-pool (~> 0.11)
+      io-endpoint (~> 0.14)
+      io-stream (~> 0.6)
+      metrics (~> 0.12)
+      protocol-http (~> 0.49)
+      protocol-http1 (~> 0.30)
+      protocol-http2 (~> 0.22)
+      protocol-url (~> 0.2)
+      traces (~> 0.10)
+    async-http-cache (0.4.6)
+      async-http (~> 0.56)
+    async-pool (0.11.0)
+      async (>= 2.0)
+    async-service (0.14.4)
+      async
+      async-container (~> 0.16)
+      string-format (~> 0.2)
+    bake (0.24.1)
+      bigdecimal
+      samovar (~> 2.1)
+    bake-gem (0.12.1)
+      console (~> 1.25)
+    bake-modernize (0.46.3)
+      async-http
+      bake
+      build-files (~> 1.6)
+      markly (~> 0.13)
+      rugged
+    bake-releases (0.4.2)
+      bake (~> 0.21)
+      markly (~> 0.8)
+    bake-test (0.3.0)
+      bake
+    bigdecimal (3.3.1)
+    build-files (1.10.0)
+    concurrent-ruby (1.3.5)
+    console (1.34.2)
+      fiber-annotation
+      fiber-local (~> 1.1)
+      json
+    covered (0.28.1)
+      console (~> 1.0)
+      msgpack (~> 1.0)
+    date (3.4.1)
+    decode (0.26.0)
+      prism
+      rbs
+    erb (5.1.1)
+    falcon (0.52.4)
+      async
+      async-container (~> 0.20)
+      async-container-supervisor (~> 0.6)
+      async-http (~> 0.75)
+      async-http-cache (~> 0.4)
+      async-service (~> 0.10)
+      bundler
+      localhost (~> 1.1)
+      openssl (~> 3.0)
+      protocol-http (~> 0.31)
+      protocol-rack (~> 0.7)
+      samovar (~> 2.3)
+    fiber-annotation (0.2.0)
+    fiber-local (1.1.0)
+      fiber-storage
+    fiber-storage (1.0.1)
+    http-accept (2.2.1)
+    io-console (0.8.1)
+    io-endpoint (0.15.2)
+    io-event (1.14.0)
+    io-stream (0.11.0)
+    io-watch (0.6.3)
+    irb (1.15.2)
+      pp (>= 0.6.0)
+      rdoc (>= 4.0.0)
+      reline (>= 0.4.2)
+    json (2.15.2)
+    language_server-protocol (3.17.0.5)
+    lint_roller (1.1.0)
+    localhost (1.6.0)
+    logger (1.7.0)
+    mail (2.9.0)
+      logger
+      mini_mime (>= 0.1.1)
+      net-imap
+      net-pop
+      net-smtp
+    mapping (1.1.3)
+    markly (0.14.1)
+    memory (0.7.1)
+      bake (~> 0.15)
+      console
+      msgpack
+    memory-leak (0.7.0)
+    metrics (0.15.0)
+    mime-types (3.7.0)
+      logger
+      mime-types-data (~> 3.2025, >= 3.2025.0507)
+    mime-types-data (3.2025.0924)
+    mini_mime (1.1.5)
+    msgpack (1.8.0)
+    net-imap (0.5.12)
+      date
+      net-protocol
+    net-pop (0.1.2)
+      net-protocol
+    net-protocol (0.2.2)
+      timeout
+    net-smtp (0.5.1)
+      net-protocol
+    openssl (3.3.1)
+    parallel (1.27.0)
+    parser (3.3.10.0)
+      ast (~> 2.4.1)
+      racc
+    pp (0.6.3)
+      prettyprint
+    prettyprint (0.2.0)
+    prism (1.6.0)
+    protocol-hpack (1.5.1)
+    protocol-http (0.55.0)
+    protocol-http1 (0.35.2)
+      protocol-http (~> 0.22)
+    protocol-http2 (0.23.0)
+      protocol-hpack (~> 1.4)
+      protocol-http (~> 0.47)
+    protocol-rack (0.16.0)
+      io-stream (>= 0.10)
+      protocol-http (~> 0.43)
+      rack (>= 1.0)
+    protocol-url (0.4.0)
+    psych (5.2.6)
+      date
+      stringio
+    racc (1.8.1)
+    rack (3.2.3)
+    rackula (1.4.1)
+      falcon (~> 0.46)
+      samovar (~> 2.1)
+      variant
+    rainbow (3.1.1)
+    rbs (3.9.5)
+      logger
+    rdoc (6.15.0)
+      erb
+      psych (>= 4.0.0)
+      tsort
+    regexp_parser (2.11.3)
+    reline (0.6.2)
+      io-console (~> 0.5)
+    rubocop (1.81.6)
+      json (~> 2.3)
+      language_server-protocol (~> 3.17.0.2)
+      lint_roller (~> 1.1.0)
+      parallel (~> 1.10)
+      parser (>= 3.3.0.2)
+      rainbow (>= 2.2.2, < 4.0)
+      regexp_parser (>= 2.9.3, < 3.0)
+      rubocop-ast (>= 1.47.1, < 2.0)
+      ruby-progressbar (~> 1.7)
+      unicode-display_width (>= 2.4.0, < 4.0)
+    rubocop-ast (1.47.1)
+      parser (>= 3.3.7.2)
+      prism (~> 1.4)
+    rubocop-md (2.0.3)
+      lint_roller (~> 1.1)
+      rubocop (>= 1.72.1)
+    rubocop-socketry (0.3.0)
+      lint_roller
+      rubocop (>= 1.72)
+    ruby-progressbar (1.13.0)
+    rugged (1.9.0)
+    samovar (2.4.1)
+      console (~> 1.0)
+      mapping (~> 1.0)
+    string-format (0.2.0)
+    stringio (3.1.7)
+    sus (0.34.0)
+    sus-fixtures-async (0.2.0)
+      async
+      sus (~> 0.10)
+    sus-fixtures-async-http (0.12.0)
+      async-http (~> 0.54)
+      sus (~> 0.31)
+      sus-fixtures-async (~> 0.1)
+    thread-local (1.1.0)
+    timeout (0.4.3)
+    traces (0.18.2)
+    tsort (0.2.0)
+    unicode-display_width (3.2.0)
+      unicode-emoji (~> 4.1)
+    unicode-emoji (4.1.0)
+    utopia (2.32.0)
+      bake (~> 0.20)
+      concurrent-ruby (~> 1.2)
+      console (~> 1.24)
+      http-accept (~> 2.1)
+      irb
+      mail (~> 2.6)
+      mime-types (~> 3.0)
+      msgpack
+      net-smtp
+      protocol-url (~> 0.4)
+      rack (~> 3.0)
+      samovar (~> 2.1)
+      traces (~> 0.10)
+      variant (~> 0.1)
+      xrb (~> 0.4)
+    utopia-project (0.37.6)
+      decode (~> 0.26)
+      falcon
+      markly (~> 0.7)
+      rackula (~> 1.3)
+      thread-local
+      utopia (~> 2.32)
+    variant (0.1.1)
+      thread-local
+    xrb (0.11.2)
+
+PLATFORMS
+  arm64-darwin-24
+  ruby
+
+DEPENDENCIES
+  agent-context
+  bake
+  bake-gem
+  bake-modernize
+  bake-releases
+  bake-test
+  covered
+  decode (~> 0.26.0)
+  io-watch
+  luna!
+  rubocop
+  rubocop-md (~> 2.0)
+  rubocop-socketry (~> 0.3.0)
+  sus
+  sus-fixtures-async-http
+  utopia-project
+
+BUNDLED WITH
+   2.7.2
