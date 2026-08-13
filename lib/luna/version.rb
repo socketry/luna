@@ -4,5 +4,5 @@
 # Copyright, 2025, by Samuel Williams.
 
 module Luna
-	VERSION = "0.0.0"
+	VERSION = "0.0.1"
 end
