@@ -12,12 +12,12 @@ require_relative "../../../lib/luna/middleware/static"
 describe Luna::Middleware::Static do
 	around do |&block|
 		Dir.mktmpdir do |root|
-			@root = root
+			@temporary_root = root
 			super(&block)
 		end
 	end
 	
-	let(:root) {File.join(@root, "www")}
+	let(:root) {File.join(@temporary_root, "www")}
 	let(:app) {->(request) {Protocol::HTTP::Response[404, { "content-type" => "text/plain" }, ["Not Found"]]}}
 	let(:middleware) {Luna::Middleware::Static.new(app, root: root, index: "index.html", directory_listing: true)}
 	

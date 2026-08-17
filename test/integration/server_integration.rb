@@ -12,12 +12,12 @@ include Sus::Fixtures::Async::HTTP::ServerContext
 
 around do |&block|
 	Dir.mktmpdir do |root|
-		@root = root
+		@temporary_root = root
 		super(&block)
 	end
 end
 
-let(:root) {File.join(@root, "www")}
+let(:root) {File.join(@temporary_root, "www")}
 
 let(:app) do
 	FileUtils.mkdir_p(root)
