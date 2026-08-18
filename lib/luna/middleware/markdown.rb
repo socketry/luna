@@ -16,6 +16,9 @@ module Luna
 		# Render Markdown files to HTML on-the-fly.
 		# Intercepts requests that target .md/.markdown files.
 		class Markdown < Protocol::HTTP::Middleware
+			# The GitHub Flavored Markdown extensions, which are not enabled by default.
+			EXTENSIONS = [:table, :strikethrough, :autolink, :tagfilter, :tasklist].freeze
+			
 			def initialize(app, root: Dir.pwd, index_candidates: ["index.md", "README.md"]) 
 				super(app)
 				@root = File.expand_path(root)
@@ -56,7 +59,7 @@ module Luna
 			
 			def render_html(markdown)
 				if defined?(::Markly)
-					::Markly.render_html(markdown)
+					::Markly.render_html(markdown, extensions: EXTENSIONS)
 				else
 					# Fallback minimal rendering if markly isn't available:
 					escape = ->(s){s.to_s.gsub("&","&amp;").gsub("<","&lt;").gsub(">","&gt;")}
