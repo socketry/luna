@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "@socketry/syntax": "^0.6.1"
+  }
+}

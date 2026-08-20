@@ -59,6 +59,50 @@ it "lists directory when no index and listing enabled" do
 	expect(response.read).to be(:include?, "file.txt")
 end
 
+it "serves Luna's own stylesheet" do
+	response = client.get("/_static/luna.css")
+	expect(response.status).to be == 200
+	expect(response.headers["content-type"]).to be(:include?, "text/css")
+	expect(response.read).to be(:include?, "border-collapse")
+end
+
+it "prefers files in the root over Luna's own assets" do
+	FileUtils.mkdir_p(File.join(www_root, "_static"))
+	File.write(File.join(www_root, "_static", "luna.css"), "/* mine */")
+	response = client.get("/_static/luna.css")
+	expect(response.read).to be(:include?, "/* mine */")
+end
+
+it "renders markdown as a complete document" do
+	File.write(File.join(www_root, "README.md"), "# Hello")
+	response = client.get("/README.md")
+	body = response.read
+	expect(body).to be(:start_with?, "<!doctype html>")
+	expect(body).to be(:include?, "/_static/luna.css")
+	expect(body).to be(:include?, "/_static/application.js")
+end
+
+it "renders the directory listing as a complete document" do
+	FileUtils.mkdir_p(File.join(www_root, "list"))
+	response = client.get("/list/")
+	body = response.read
+	expect(body).to be(:start_with?, "<!doctype html>")
+	expect(body).to be(:include?, "/_static/luna.css")
+end
+
+with "syntax highlighting disabled" do
+	let(:app) do
+		FileUtils.mkdir_p(www_root)
+		Luna::Server.middleware(root: www_root, markdown: true, syntax_highlighting: false)
+	end
+	
+	it "does not link the highlighter" do
+		File.write(File.join(www_root, "README.md"), "# Hello")
+		response = client.get("/README.md")
+		expect(response.read).not.to be(:include?, "application.js")
+	end
+end
+
 it "handles HEAD requests without body" do
 	File.write(File.join(www_root, "file.json"), '{"a":1}')
 	response = client.head("/file.json")

@@ -7,6 +7,8 @@ require "async/http/server"
 require "protocol/http/middleware/builder"
 require "protocol/http/content_encoding"
 
+require_relative "../luna"
+require_relative "document"
 require_relative "middleware/verbose"
 require_relative "middleware/static"
 require_relative "middleware/markdown"
@@ -20,16 +22,26 @@ module Luna
 		# @param markdown [Boolean] Enable markdown rendering.
 		# @param index [String] Index file for directories.
 		# @param directory_listing [Boolean] Enable basic directory listing when no index exists.
-		def self.middleware(root: Dir.pwd, verbose: false, markdown: true, index: "index.html", directory_listing: true)
+		# @param syntax_highlighting [Boolean] Highlight code using Luna's bundled syntax highlighter.
+		def self.middleware(root: Dir.pwd, verbose: false, markdown: true, index: "index.html", directory_listing: true, syntax_highlighting: true)
+			scripts = syntax_highlighting ? ["/_static/application.js"] : []
+			document = Luna::Document.new(scripts: scripts)
+			
 			::Protocol::HTTP::Middleware.build do
 				use Luna::Middleware::Verbose if verbose
 				use ::Protocol::HTTP::ContentEncoding
-				use Luna::Middleware::Markdown, root: root if markdown
-				run Luna::Middleware::Static.new(
-					->(request){Protocol::HTTP::Response[404, {"content-type"=>"text/plain"}, ["Not Found"]]},
+				use Luna::Middleware::Markdown, root: root, document: document if markdown
+				use Luna::Middleware::Static,
 					root: root,
 					index: index,
-					directory_listing: directory_listing
+					directory_listing: directory_listing,
+					document: document
+				
+				# Luna's own assets are served last, so that files in the root take precedence:
+				run Luna::Middleware::Static.new(
+					->(request){Protocol::HTTP::Response[404, {"content-type"=>"text/plain"}, ["Not Found"]]},
+					root: Luna::PUBLIC_ROOT,
+					directory_listing: false
 				)
 			end
 		end

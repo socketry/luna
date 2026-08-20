@@ -5,3 +5,5 @@
 /gems.locked
 /.covered.db
 /external
+
+/node_modules

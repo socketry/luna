@@ -7,6 +7,8 @@ require "protocol/http/middleware"
 require "protocol/http/body/file"
 require "time"
 
+require_relative "../document"
+
 module Luna
 	module Middleware
 		# Serve static files from a root directory, with optional index and directory listing.
@@ -29,16 +31,18 @@ module Luna
 				".zip" => "application/zip",
 			}.freeze
 			
-			def initialize(app, root: Dir.pwd, index: "index.html", directory_listing: true)
+			def initialize(app, root: Dir.pwd, index: "index.html", directory_listing: true, document: Document.new)
 				super(app)
 				@root = File.expand_path(root)
 				@index = index
 				@directory_listing = directory_listing
+				@document = document
 			end
 			
 			attr :root
 			attr :index
 			attr :directory_listing
+			attr :document
 			
 			def mime_type_for_extension(ext)
 				MIME_TYPES[ext.downcase] || "application/octet-stream"
@@ -99,13 +103,8 @@ module Luna
 					target += "/" if File.directory?(File.join(dir_path, e)) && !target.end_with?("/")
 					"<li><a href=\"#{escape_html(target)}\">#{escape_html(name)}</a></li>"
 				end.join("\n")
-				html = <<~HTML
-				<!doctype html>
-				<meta charset="utf-8">
-				<title>Index of #{escape_html(request_path)}</title>
-				<h1>Index of #{escape_html(request_path)}</h1>
-				<ul>#{links}</ul>
-			HTML
+				title = "Index of #{request_path}"
+				html = @document.call(title, "<h1>#{escape_html(title)}</h1>\n<ul>#{links}</ul>")
 				
 				headers = [
 					["content-type", "text/html; charset=utf-8"]
