@@ -21,7 +21,7 @@ Gem::Specification.new do |spec|
 		"source_code_uri" => "https://github.com/socketry/luna.git",
 	}
 	
-	spec.files = Dir.glob(["{bin,examples,lib}/**/*", "*.md"], File::FNM_DOTMATCH, base: __dir__)
+	spec.files = Dir.glob(["{bin,examples,lib,public}/**/*", "*.md"], File::FNM_DOTMATCH, base: __dir__)
 	
 	spec.executables = ["luna"]
 	

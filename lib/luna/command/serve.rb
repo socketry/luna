@@ -24,6 +24,7 @@ module Luna
 				option "-i/--index <filename>", "Directory index", default: "index.html"
 				option "--[no]-directory-listing", "Enable directory listing", default: true
 				option "--[no]-markdown", "Enable Markdown rendering", default: true
+				option "--[no]-syntax-highlighting", "Enable syntax highlighting", default: true
 				option "-v/--[no]-verbose", "Verbose logging", default: false
 			end
 			
@@ -55,7 +56,8 @@ module Luna
 					verbose: @options[:verbose],
 					markdown: @options[:markdown],
 					index: @options[:index],
-					directory_listing: @options[:directory_listing]
+					directory_listing: @options[:directory_listing],
+					syntax_highlighting: @options[:syntax_highlighting]
 				)
 			end
 			
@@ -64,7 +66,7 @@ module Luna
 					buffer.puts "Luna v#{Luna::VERSION} serving..."
 					buffer.puts "- Root: #{File.expand_path(root_directory)}"
 					buffer.puts "- Bind: #{endpoint}"
-					buffer.puts "- Markdown: #{@options[:markdown]} | Index: #{@options[:index]} | Directory Listing: #{@options[:directory_listing]}"
+					buffer.puts "- Markdown: #{@options[:markdown]} | Index: #{@options[:index]} | Directory Listing: #{@options[:directory_listing]} | Syntax Highlighting: #{@options[:syntax_highlighting]}"
 				end
 				
 				Async do |task|

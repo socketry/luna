@@ -5,6 +5,8 @@
 
 require "protocol/http/middleware"
 
+require_relative "../document"
+
 begin
 	require "markly"
 rescue LoadError
@@ -19,14 +21,16 @@ module Luna
 			# The GitHub Flavored Markdown extensions, which are not enabled by default.
 			EXTENSIONS = [:table, :strikethrough, :autolink, :tagfilter, :tasklist].freeze
 			
-			def initialize(app, root: Dir.pwd, index_candidates: ["index.md", "README.md"]) 
+			def initialize(app, root: Dir.pwd, index_candidates: ["index.md", "README.md"], document: Document.new)
 				super(app)
 				@root = File.expand_path(root)
 				@index_candidates = index_candidates
+				@document = document
 			end
 			
 			attr :root
 			attr :index_candidates
+			attr :document
 			
 			def safe_join(path)
 				full = File.expand_path(File.join(@root, path))
@@ -69,7 +73,7 @@ module Luna
 			
 			def render_file(path, head: false)
 				content = File.read(path)
-				html = render_html(content)
+				html = @document.call(File.basename(path), render_html(content))
 				headers = [
 					["content-type", "text/html; charset=utf-8"]
 				]
