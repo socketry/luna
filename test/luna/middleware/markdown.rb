@@ -14,7 +14,7 @@ describe Luna::Middleware::Markdown do
 	include Sus::Fixtures::TemporaryDirectoryContext
 	
 	let(:www_root) {File.join(root, "www")}
-	let(:app) {->(request) {Protocol::HTTP::Response[404, { "content-type" => "text/plain" }, ["Not Found"]]}}
+	let(:app) {->(request){Protocol::HTTP::Response[404, { "content-type" => "text/plain" }, ["Not Found"]]}}
 	let(:middleware) {Luna::Middleware::Markdown.new(app, root: www_root)}
 	
 	def request(method, path)

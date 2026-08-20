@@ -17,11 +17,11 @@ let(:www_root) {File.join(root, "www")}
 let(:app) do
 	FileUtils.mkdir_p(www_root)
 	Luna::Server.middleware(
-				root: www_root,
-				markdown: true,
-				verbose: false,
-				directory_listing: true
-		)
+		root: www_root,
+		markdown: true,
+		verbose: false,
+		directory_listing: true
+	)
 end
 
 it "serves index.html at root" do
