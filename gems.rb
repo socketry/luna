@@ -14,6 +14,7 @@ group :maintenance, optional: true do
 	
 	gem "agent-context"
 	
+	gem "utopia"
 	gem "utopia-project"
 	
 	gem "decode"
