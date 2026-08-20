@@ -5,5 +5,3 @@
 
 require "covered/sus"
 include Covered::Sus
-
-require "tmpdir"
