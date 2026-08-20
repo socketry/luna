@@ -50,3 +50,11 @@ Options:
       server = Luna::Server.new(app, endpoint, protocol: endpoint.protocol)
       server.run
     end
+
+## Releases
+
+Please see the [project releases](https://socketry.github.io/luna/releases/index) for all releases.
+
+### v0.0.1
+
+  - Initial release.

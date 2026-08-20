@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Released under the MIT License.
-# Copyright, 2025, by Samuel Williams.
+# Copyright, 2026, by Samuel Williams.
 
 require "fileutils"
 require "protocol/http/request"
@@ -18,7 +18,7 @@ describe Luna::Middleware::Static do
 	end
 	
 	let(:root) {File.join(@root, "www")}
-	let(:app) {->(request) {Protocol::HTTP::Response[404, { "content-type" => "text/plain" }, ["Not Found"]]}}
+	let(:app) {->(request){Protocol::HTTP::Response[404, { "content-type" => "text/plain" }, ["Not Found"]]}}
 	let(:middleware) {Luna::Middleware::Static.new(app, root: root, index: "index.html", directory_listing: true)}
 	
 	def request(method, path)

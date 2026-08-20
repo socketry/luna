@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Released under the MIT License.
-# Copyright, 2025, by Samuel Williams.
+# Copyright, 2026, by Samuel Williams.
 
 require "protocol/http/middleware"
 
@@ -39,7 +39,7 @@ module Luna
 				return super unless fs_path
 				
 				if File.directory?(fs_path)
-					candidate = @index_candidates.map {|n| File.join(fs_path, n)}.find {|p| File.file?(p)}
+					candidate = @index_candidates.map{|n| File.join(fs_path, n)}.find{|p| File.file?(p)}
 					return render_file(candidate, head: request.method == "HEAD") if candidate
 				elsif File.file?(fs_path) && markdown_file?(fs_path)
 					return render_file(fs_path, head: request.method == "HEAD")
@@ -68,8 +68,8 @@ module Luna
 				content = File.read(path)
 				html = render_html(content)
 				headers = [
-						["content-type", "text/html; charset=utf-8"]
-					]
+					["content-type", "text/html; charset=utf-8"]
+				]
 				Protocol::HTTP::Response[200, headers, head ? nil : [html]]
 			end
 		end

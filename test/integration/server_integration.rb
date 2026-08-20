@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Released under the MIT License.
-# Copyright, 2025, by Samuel Williams.
+# Copyright, 2026, by Samuel Williams.
 
 require "sus/fixtures/async/http"
 require "fileutils"
@@ -22,11 +22,11 @@ let(:root) {File.join(@root, "www")}
 let(:app) do
 	FileUtils.mkdir_p(root)
 	Luna::Server.middleware(
-				root: root,
-				markdown: true,
-				verbose: false,
-				directory_listing: true
-		)
+		root: root,
+		markdown: true,
+		verbose: false,
+		directory_listing: true
+	)
 end
 
 it "serves index.html at root" do
