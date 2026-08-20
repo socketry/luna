@@ -16,6 +16,8 @@ Gem::Specification.new do |spec|
 	spec.homepage = "https://github.com/socketry/luna"
 	
 	spec.metadata = {
+		"bug_tracker_uri" => "https://github.com/socketry/luna/issues",
+		"changelog_uri" => "https://github.com/socketry/luna/blob/main/releases.md",
 		"source_code_uri" => "https://github.com/socketry/luna.git",
 	}
 	
@@ -23,7 +25,7 @@ Gem::Specification.new do |spec|
 	
 	spec.executables = ["luna"]
 	
-	spec.required_ruby_version = ">= 3.2"
+	spec.required_ruby_version = ">= 3.3"
 	
 	spec.add_dependency "async"
 	spec.add_dependency "async-http", "~> 0.75"
