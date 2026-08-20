@@ -81,9 +81,9 @@ module Luna
 			def serve_file(path, head: false)
 				stat = File.stat(path)
 				headers = [
-						["content-type", mime_type_for_extension(File.extname(path))],
-						["last-modified", stat.mtime.httpdate],
-					]
+					["content-type", mime_type_for_extension(File.extname(path))],
+					["last-modified", stat.mtime.httpdate],
+				]
 				
 				body = head ? nil : Protocol::HTTP::Body::File.open(path)
 				
@@ -92,7 +92,7 @@ module Luna
 			
 			def serve_directory_listing(dir_path, request_path)
 				entries = Dir.entries(dir_path).sort - ["."]
-				entries.reject! {|e| e == ".."} if request_path == "/"
+				entries.reject!{|e| e == ".."} if request_path == "/"
 				links = entries.map do |e|
 					name = e
 					target = File.join(request_path, e)
@@ -108,8 +108,8 @@ module Luna
 			HTML
 				
 				headers = [
-						["content-type", "text/html; charset=utf-8"]
-					]
+					["content-type", "text/html; charset=utf-8"]
+				]
 				
 				Protocol::HTTP::Response[200, headers, [html]]
 			end
